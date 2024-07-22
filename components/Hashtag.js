@@ -1,49 +1,52 @@
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Hashtag.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from '../reducers/user';
 import { addTweets } from '../reducers/tweets';
 import Image from 'next/image';
 import {useRouter} from 'next/router'
-import Tweet from '../components/Tweet'
 import LastTweets from './LastTweets';
 import Trends from './Trends'
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-function Home() {
-  const router = useRouter()
+function Hashtag (props){
+    const router = useRouter()
 
-  const dispatch = useDispatch()
-  const user = useSelector((state)=>state.user.value)
-  console.log(user)
+    const dispatch = useDispatch()
+    const user = useSelector((state)=>state.user.value)
+  
+    const [actualise, setActualise]=useState(0)
+    const [hashtags, setHashtags]=useState([])
 
-  const [actualise, setActualise]=useState(0)
-  console.log(actualise)
+    useEffect(()=>{
+        
+        fetch('http://localhost:3000/tweets/getByHashtag', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({hashtag : `#${props.hashtag}`})
+            })
+            .then(response=> response.json())
+            .then(data=> {
+            setHashtags(data)
+            })
+    },[actualise])
+  
+    const getNewTweet = (number)=>{
+      setActualise(actualise + number)
+    }
 
-  const getNewTweet = (number)=>{
-    setActualise(actualise + number)
-  }
+    const logoutClick = ()=>{
+      dispatch(logOut())
+      router.push('/')
+    }
+    
+    const allTweets = useSelector((state)=>state.tweets.value)
+    const copyOfTweets = [...allTweets]
 
-  const allTweets = useSelector((state)=>state.tweets.value)
-  console.log(allTweets)
+    const tweets = hashtags.map((e,i)=> <LastTweets {...e} key={i} getNewTweet={getNewTweet} actualUser={user.username} actualUserId={user._id} />)
 
-  const copyOfTweets = [...allTweets]
-  const orderedTweets = copyOfTweets.reverse()
-  const tweets = orderedTweets.map((e,i)=> <LastTweets {...e} key={i} getNewTweet={getNewTweet} actualUser={user.username} actualUserId={user._id} />)
-
-  useEffect(()=>{
-    fetch('http://localhost:3000/tweets')
-    .then(response=>response.json())
-    .then(data => dispatch(addTweets(data)))
-  },[actualise])
-
-  const logoutClick = ()=>{
-    dispatch(logOut())
-    router.push('/')
-  }
-
-  return (
-    <div className={styles.body}>
+    return(
+        <div className={styles.body}>
         <div className={styles.leftContainer}>
           <div className={styles.twitterLogoContainer}>
             <Image src='/logo.png' alt='Logo Twitter' layout='fill'/>
@@ -63,7 +66,7 @@ function Home() {
         </div>
         <div className={styles.centralContainer}>
           <div className={styles.tweetContainer}>
-            <Tweet {...user} getNewTweet={getNewTweet}/>
+            <h2 className={styles.hashtagTitle}>Hashtag</h2>
           </div>
           <div className={styles.lastTweetsContainer}>
               {tweets}
@@ -73,7 +76,7 @@ function Home() {
           <Trends allTweets={copyOfTweets} getNewTweet={getNewTweet}/>
         </div>
     </div>
-  );
+    )
 }
 
-export default Home;
+export default Hashtag

@@ -1,0 +1,77 @@
+.body{
+    width: 100%;
+    height: 20vh;
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-top: 1px solid rgb(63	70	80	);
+}
+
+.userInfosContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.userLogoContainer{
+    height : 7vh;
+    width: 7vh;
+    position: relative;
+    margin-right: 2%;
+}
+  
+.userLogo{
+    border-radius: 50%;
+}
+
+.firstname{
+    color:white;
+    margin-right: 2%;
+    font-size: 100%;
+}
+
+.username{
+    color:rgb(121	131	139	);
+    margin-right: 2%;
+    font-size: 85%;
+}
+
+.date{
+    color:rgb(121	131	139	);
+    font-size: 85%;
+}
+
+.message{
+    color :white;
+    font-size: 85%;
+}
+
+.heartContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.heart{
+    color:white;
+    margin-right: 0.5vw;
+    height : 1.5vh;
+    cursor: pointer;
+}
+
+.count{
+    color:white;
+    font-size: 85%;
+    margin-right: 0.5vw;
+}
+
+.trash{
+    color :white;
+    height : 1.5vh;
+    cursor: pointer;
+}

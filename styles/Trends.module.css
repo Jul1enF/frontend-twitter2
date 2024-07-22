@@ -1,0 +1,48 @@
+.body{
+    width: 100%;
+    height: 100%;
+    padding: 4vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+.trendsTitle{
+    color :white;
+    font-size: 145%;
+    margin-bottom: 3vh;
+}
+
+.trendsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.hashtagContainer{
+    width: 100%;
+    height: 11vh;
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    background-color: rgb(30	39	49	);
+}
+
+.hashtagTitle{
+    color :white;
+    font-size: 90%;
+    font-weight: 900;
+    cursor: pointer;
+
+}
+
+.count{
+    color: rgb(121	131	139	);
+    font-size: 85%;
+}
