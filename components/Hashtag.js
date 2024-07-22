@@ -20,11 +20,7 @@ function Hashtag (props){
 
     useEffect(()=>{
         
-        fetch('http://localhost:3000/tweets/getByHashtag', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({hashtag : `#${props.hashtag}`})
-            })
+        fetch(`http://localhost:3000/tweets/getByHashtag/${props.hashtag}`)
             .then(response=> response.json())
             .then(data=> {
             setHashtags(data)

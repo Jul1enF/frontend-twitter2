@@ -24,6 +24,7 @@ function Trends (props){
             const newHashtag = hashtag.slice(1, hashtag.length)
             router.push(`/hashtag/${newHashtag}`)
             props.getNewTweet(1)
+            console.log('actualise')
     }
 
     const hashtagsDisplay = filteredHashtags.map((e,i)=>{
