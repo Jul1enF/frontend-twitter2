@@ -31,6 +31,12 @@ function SignIn (){
             } )
     }
 
+    const passwordKeyDown = (event)=>{
+        if (event.code==='Enter'){
+            buttonClick()
+        }
+    }
+
     return (
         <div className={styles.mainContainer}>
             <div className={styles.logoContainer}>
@@ -39,7 +45,7 @@ function SignIn (){
             <h2 className={styles.title}>Connect to Hackatweet</h2>
             <div className={styles.postContainer}>
                 <input type="text" className={styles.input} placeholder='Username' onChange={e=>setUsername(e.target.value)} value={username} />
-                <input type="password" className={styles.input} placeholder='Password' onChange={e=>setPassword(e.target.value)} value={password} />
+                <input type="password" className={styles.input} placeholder='Password' onChange={e=>setPassword(e.target.value)} value={password} onKeyDown={passwordKeyDown}/>
                 <button className={styles.button} onClick={()=>buttonClick()}>Sign in</button>
             </div>
         </div>

@@ -17,6 +17,7 @@
     position: relative;
     height: 8vh;
     width: 8vh;
+    cursor: pointer;
   }
   
   .bottomContainer{
@@ -89,13 +90,35 @@
     height : 19vh;
     border-bottom: 1px solid rgb(63	70	80	);
     padding: 4vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .titleContainer{
+    width:100%;
   }
 
   .hashtagTitle{
     color :white;
     font-size: 145%;
-
 }
+
+  .hashtagInput{
+    width: 83%;
+    height : 45%;
+    border : transparent;
+    padding-left: 2%;
+    border-radius: 5vw;
+    background-color: rgb(30	39	49	);
+    color:white;
+    font-size: 108%;
+  }
+
+  .hashtagInput::placeholder{
+    color:white;
+  }
   
   .lastTweetsContainer{
     width: 100%;

@@ -17,6 +17,7 @@
   position: relative;
   height: 8vh;
   width: 8vh;
+  cursor: pointer;
 }
 
 .bottomContainer{

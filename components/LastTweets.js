@@ -3,19 +3,25 @@ import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteTweet, addLiker, removeLiker } from '../reducers/tweets'
 const moment = require('moment')
 
 function LastTweets (props) {
 
+    const dispatch = useDispatch()
     const timePassed = moment(props.createdDate).fromNow(true)
 
+    const user = useSelector((state)=>state.user.value)
+    const allTweets = useSelector((state)=>state.tweets.value)
+
     const [isLiked, setIsLiked] = useState(false)
-    const [canTrash, setCanTrash] = useState(false)
+    const [canTrash, setCanTrash] = useState('')
 
     useEffect(()=>{
-        props.likedBy.includes(props.actualUserId) ? setIsLiked(true) : setIsLiked(false) ;
-        props.actualUser == props.username ? setCanTrash(true) : setCanTrash(false);
-    }, [])
+        props.likedBy.includes(user._id) ? setIsLiked(true) : setIsLiked(false) ;
+        user.username === props.username ? setCanTrash(true) : setCanTrash(false);
+    }, [allTweets])
 
     let heartStyle = {}
     isLiked ? heartStyle = {color : 'red'} : heartStyle = {color : 'white'}
@@ -25,7 +31,7 @@ function LastTweets (props) {
         .then(response=>response.json())
         .then(data=>{
             console.log(data)
-            props.getNewTweet(1)
+            data.deletedCount>0 && dispatch(deleteTweet(props._id))
         })
     }
 
@@ -40,30 +46,36 @@ function LastTweets (props) {
             fetch('http://localhost:3000/tweets/addLiker', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({id : props._id, userId : props.actualUserId})
+                body: JSON.stringify({id : props._id, userId : user._id})
                 })
                 .then(response=> response.json())
                 .then(data=> {
-                console.log(data);
+                if (data.modifiedCount>0){
                 setIsLiked(!isLiked)
-                props.getNewTweet(1)
+                dispatch(addLiker({id : props._id, userId : user._id}))
+                }
                 })
         }
         else {
             fetch('http://localhost:3000/tweets/removeLiker', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({id : props._id, userId : props.actualUserId})
+                body: JSON.stringify({id : props._id, userId : user._id})
                 })
                 .then(response=> response.json())
                 .then(data=> {
-                console.log(data);
-                setIsLiked(!isLiked)
-                props.getNewTweet(1)
+                if (data.modifiedCount>0){
+                    setIsLiked(!isLiked)
+                    dispatch(removeLiker({id : props._id, userId : user._id}))
+                }
                 })
         }
-        
     }
+ 
+    let newMessage = props.message.split(' ').map((e,i)=>{
+        if (e.startsWith('#') && e.length >1){return <span key={i} style={{color : 'rgb(63	140	233	)'}}>{e} </span>}
+        else {return e + ' '}
+    })
 
     return (
         <div className={styles.body}>
@@ -75,7 +87,7 @@ function LastTweets (props) {
                 <p className={styles.username}>@{props.username}</p>
                 <p className={styles.date}>{timePassed}</p>
             </div>
-            <p className={styles.message}>{props.message}</p>
+            <p className={styles.message}>{newMessage}</p>
             <div className={styles.heartContainer}>
                 <FontAwesomeIcon icon={faHeart} className={styles.heart} style={heartStyle} onClick={()=>heartClick()}/>
                 <p className={styles.count}>{props.likedBy.length}</p>

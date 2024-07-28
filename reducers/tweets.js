@@ -11,8 +11,30 @@ export const tweetsSlice= createSlice({
         addTweets : (state, action)=>{
             state.value = action.payload
         },
+        deleteTweet : (state, action)=>{
+            state.value=state.value.filter(e=>e._id !== action.payload)
+        },
+        addLiker : (state, action)=>{
+            state.value=state.value.map(e=>{
+                if (e._id== action.payload.id){
+                    e.likedBy.push(action.payload.userId)
+                    return e
+                } else {return e}
+            })
+        },
+        removeLiker : (state, action)=>{
+            state.value=state.value.map(e=>{
+                if (e._id== action.payload.id){
+                    e.likedBy=e.likedBy.filter(f=>f!==action.payload.userId)
+                    return e
+                } else {return e}
+            })
+        },
+        addTweet : (state, action)=>{
+            state.value.unshift(action.payload)
+        }
     }
 })
 
-export const {addTweets} = tweetsSlice.actions ;
+export const {addTweets, deleteTweet, addLiker, removeLiker, addTweet} = tweetsSlice.actions ;
 export default tweetsSlice.reducer;

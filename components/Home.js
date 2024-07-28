@@ -8,7 +8,6 @@ import Tweet from '../components/Tweet'
 import LastTweets from './LastTweets';
 import Trends from './Trends'
 import { useEffect } from 'react';
-import { useState } from 'react';
 
 function Home() {
   const router = useRouter()
@@ -17,25 +16,18 @@ function Home() {
   const user = useSelector((state)=>state.user.value)
   console.log(user)
 
-  const [actualise, setActualise]=useState(0)
-  console.log(actualise)
-
-  const getNewTweet = (number)=>{
-    setActualise(actualise + number)
-  }
 
   const allTweets = useSelector((state)=>state.tweets.value)
   console.log(allTweets)
 
-  const copyOfTweets = [...allTweets]
-  const orderedTweets = copyOfTweets.reverse()
-  const tweets = orderedTweets.map((e,i)=> <LastTweets {...e} key={i} getNewTweet={getNewTweet} actualUser={user.username} actualUserId={user._id} />)
+  const tweets = allTweets.map((e,i)=> <LastTweets key={i} {...e} />)
 
   useEffect(()=>{
+    if (!user.token){router.push('/')}
     fetch('http://localhost:3000/tweets')
     .then(response=>response.json())
     .then(data => dispatch(addTweets(data)))
-  },[actualise])
+  },[])
 
   const logoutClick = ()=>{
     dispatch(logOut())
@@ -46,7 +38,9 @@ function Home() {
     <div className={styles.body}>
         <div className={styles.leftContainer}>
           <div className={styles.twitterLogoContainer}>
+         
             <Image src='/logo.png' alt='Logo Twitter' layout='fill'/>
+        
           </div>
           <div className={styles.bottomContainer}>
             <div className={styles.userLogContainer}>
@@ -63,14 +57,14 @@ function Home() {
         </div>
         <div className={styles.centralContainer}>
           <div className={styles.tweetContainer}>
-            <Tweet {...user} getNewTweet={getNewTweet}/>
+            <Tweet {...user}/>
           </div>
           <div className={styles.lastTweetsContainer}>
               {tweets}
           </div>
         </div>
         <div className={styles.rightContainer}>
-          <Trends allTweets={copyOfTweets} getNewTweet={getNewTweet}/>
+          <Trends/>
         </div>
     </div>
   );

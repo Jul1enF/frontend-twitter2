@@ -6,46 +6,52 @@ import Image from 'next/image';
 import {useRouter} from 'next/router'
 import LastTweets from './LastTweets';
 import Trends from './Trends'
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link'
 
 function Hashtag (props){
     const router = useRouter()
+    let hashtag = router.query.hashtag
+    const [hashtagInput, setHashtagInput]= useState('#' + hashtag)
+    const [inputText, setInputText] =useState('')
 
     const dispatch = useDispatch()
     const user = useSelector((state)=>state.user.value)
-  
-    const [actualise, setActualise]=useState(0)
-    const [hashtags, setHashtags]=useState([])
+    const allTweets = useSelector((state)=>state.tweets.value)
+
+    const getHashtagTweets = async ()=>{
+      const response = await fetch(`http://localhost:3000/tweets/getByHashtag/${hashtag}`)
+      const data = await response.json()
+      dispatch(addTweets(data))
+    }
 
     useEffect(()=>{
-        
-        fetch(`http://localhost:3000/tweets/getByHashtag/${props.hashtag}`)
-            .then(response=> response.json())
-            .then(data=> {
-            setHashtags(data)
-            })
-    },[actualise])
-  
-    const getNewTweet = (number)=>{
-      setActualise(actualise + number)
-    }
+      if (!user.token){router.push('/')}
+      getHashtagTweets()
+      setHashtagInput('#' + hashtag)
+    },[hashtag])
 
     const logoutClick = ()=>{
       dispatch(logOut())
       router.push('/')
     }
-    
-    const allTweets = useSelector((state)=>state.tweets.value)
-    const copyOfTweets = [...allTweets]
 
-    const tweets = hashtags.map((e,i)=> <LastTweets {...e} key={i} getNewTweet={getNewTweet} actualUser={user.username} actualUserId={user._id} />)
+    const inputKeyDown=(event)=>{
+      if (event.code === 'Enter')
+      {
+        setHashtagInput(inputText)
+        router.push(`/hashtag/${inputText.slice(1)}`)
+      }
+    }
+
+    const tweets = allTweets.map((e,i)=> <LastTweets {...e} key={i} />)
 
     return(
         <div className={styles.body}>
         <div className={styles.leftContainer}>
           <div className={styles.twitterLogoContainer}>
-            <Image src='/logo.png' alt='Logo Twitter' layout='fill'/>
+          <Link href='/home'>
+          <Image src='/logo.png' alt='Logo Twitter' layout='fill'/></Link>
           </div>
           <div className={styles.bottomContainer}>
             <div className={styles.userLogContainer}>
@@ -62,14 +68,18 @@ function Hashtag (props){
         </div>
         <div className={styles.centralContainer}>
           <div className={styles.tweetContainer}>
-            <h2 className={styles.hashtagTitle}>Hashtag</h2>
+            <div className={styles.titleContainer}>
+              <h2 className={styles.hashtagTitle}>Hashtag</h2>
+            </div>
+            <input type="text" placeholder={hashtagInput} className={styles.hashtagInput} onKeyDown={inputKeyDown}
+            onChange={e=>setInputText(e.target.value)} value={inputText}/>
           </div>
           <div className={styles.lastTweetsContainer}>
               {tweets}
           </div>
         </div>
         <div className={styles.rightContainer}>
-          <Trends allTweets={copyOfTweets} getNewTweet={getNewTweet}/>
+          <Trends/>
         </div>
     </div>
     )
