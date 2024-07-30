@@ -28,6 +28,9 @@ function Hashtag (props){
     }
 
     useEffect(()=>{
+      if (!hashtag) {
+        return;
+      }
       getHashtagTweets()
       setHashtagInput('#' + hashtag)
     },[hashtag])
