@@ -3,27 +3,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from '../reducers/user';
 import { addTweets } from '../reducers/tweets';
 import Image from 'next/image';
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router';
 import Tweet from '../components/Tweet'
 import LastTweets from './LastTweets';
 import Trends from './Trends'
 import { useEffect } from 'react';
 
 function Home() {
-  const router = useRouter()
 
   const dispatch = useDispatch()
   const user = useSelector((state)=>state.user.value)
-  console.log(user)
-
-
   const allTweets = useSelector((state)=>state.tweets.value)
-  console.log(allTweets)
+
+  const router = useRouter();
+
+  if (!user.token){
+    router.push('/')}
 
   const tweets = allTweets.map((e,i)=> <LastTweets key={i} {...e} />)
 
+
   useEffect(()=>{
-    if (!user.token){router.push('/')}
+  
     fetch('http://localhost:3000/tweets')
     .then(response=>response.json())
     .then(data => dispatch(addTweets(data)))

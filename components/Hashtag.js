@@ -19,6 +19,8 @@ function Hashtag (props){
     const user = useSelector((state)=>state.user.value)
     const allTweets = useSelector((state)=>state.tweets.value)
 
+    if (!user.token){router.push('/')}
+
     const getHashtagTweets = async ()=>{
       const response = await fetch(`http://localhost:3000/tweets/getByHashtag/${hashtag}`)
       const data = await response.json()
@@ -26,7 +28,6 @@ function Hashtag (props){
     }
 
     useEffect(()=>{
-      if (!user.token){router.push('/')}
       getHashtagTweets()
       setHashtagInput('#' + hashtag)
     },[hashtag])

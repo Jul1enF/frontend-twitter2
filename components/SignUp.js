@@ -15,6 +15,8 @@ function SignUp (){
     const dispatch = useDispatch()
     const router = useRouter()
 
+    const [error, setError] = useState('')
+
     const buttonClick = ()=>{
         fetch('http://localhost:3000/users/signup', {
             method: 'POST',
@@ -27,11 +29,22 @@ function SignUp (){
             })
             .then(response=> response.json())
             .then(data=> {
+                console.log(data)
                 if (data.result)
-                    { dispatch(logUser(data.user))
-                     router.push('/home')
+                    {   setError('')
+                        dispatch(logUser(data.user))
+                        router.push('/home')
+                    }
+                    {
+                        setError(data.error)
                     }
             } )
+    }
+
+    const passwordKeyDown = (event)=>{
+        if (event.code==='Enter'){
+            buttonClick()
+        }
     }
 
     return (
@@ -41,10 +54,22 @@ function SignUp (){
             </div>
             <h2 className={styles.title}>Create your hackatweet account</h2>
             <div className={styles.postContainer}>
-                <input type="text" className={styles.input} placeholder='Firstname' onChange={e=>setFirstname(e.target.value)} value={firstname} />
-                <input type="text" className={styles.input} placeholder='Username' onChange={e=>setUsername(e.target.value)} value={username} />
-                <input type="password" className={styles.input} placeholder='Password' onChange={e=>setPassword(e.target.value)} value={password} />
+                <input type="text" className={styles.input} placeholder='Firstname' onChange={e=>{
+                    setError('')
+                    setFirstname(e.target.value)
+                    }} value={firstname} />
+                <input type="text" className={styles.input} placeholder='Username' onChange={e=>{
+                    setError('')
+                    setUsername(e.target.value)
+                    }} value={username} />
+                <input type="password" className={styles.input} placeholder='Password' onChange={e=>{
+                    setError('')
+                    setPassword(e.target.value)
+                    }} value={password}  onKeyDown={passwordKeyDown} />
                 <button className={styles.button} onClick={()=>buttonClick()}>Sign up</button>
+                <div className={styles.errorContainer}>
+                <p className={styles.error}>{error}</p>
+                </div>
             </div>
         </div>
 

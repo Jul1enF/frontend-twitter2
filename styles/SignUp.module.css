@@ -1,5 +1,5 @@
 .mainContainer{
-    height: 44vh;
+    height: 48vh;
     width: 100%;
     font-family: Verdana;
     display: flex;
@@ -48,4 +48,21 @@
     font-weight: 600;
     border-radius: 2vw;
     cursor: pointer;
+    margin-bottom: 5%;
+}
+
+.errorContainer{
+    height : 3vh;
+    width : 140%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error{
+    color:rgb(160, 17, 17);
+    font-family: Mount-Heavy;
+    font-size: 1.95vh;
+    text-align: center;
+    width: 140%;
 }

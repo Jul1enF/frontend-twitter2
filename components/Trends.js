@@ -18,14 +18,15 @@ function Trends (props){
             setAllTweets(data)
         })
       },[tweets])
-
+    
+    console.log(allTweets)
     const hashtags = allTweets.map(e=> {
-     if (e.hastag !== null) {return e=e.hashtag} else {return }
+        return e=e.hashtag
     }).flat()
     let filteredHashtags = [...new Set(hashtags)]
 
     function getNumberHashtags(hashtagSearched){
-        const tweetsWithHashtag = allTweets.filter(e=>e.hashtag !== null && e.hashtag.includes(hashtagSearched))
+        const tweetsWithHashtag = allTweets.filter(e=> e.hashtag.includes(hashtagSearched))
         return tweetsWithHashtag.length
     }
 
@@ -35,11 +36,6 @@ function Trends (props){
 
     filteredHashtags.sort((a,b)=>b.number-a.number)
 
-    const hashtagClick = (hashtag)=>{
-            const newHashtag = hashtag.slice(1)
-            router.push(`/hashtag/${newHashtag}`)
-    }
-
     const hashtagsDisplay = filteredHashtags.map((e,i)=>{
         let tweet
         e.number>1 ? tweet='Tweets' : tweet='Tweet'
@@ -48,6 +44,11 @@ function Trends (props){
             <p className={styles.count}>{e.number} {tweet}</p>
         </div>
     })
+
+    const hashtagClick = (hashtag)=>{
+        const newHashtag = hashtag.slice(1)
+        router.push(`/hashtag/${newHashtag}`)
+    }
 
     return(
         <div className={styles.body}>

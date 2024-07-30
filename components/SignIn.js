@@ -10,6 +10,8 @@ function SignIn (){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const [error, setError] = useState('')
+
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -25,9 +27,10 @@ function SignIn (){
             .then(response=> response.json())
             .then(data=> {
                 if (data.result)
-           { dispatch(logUser(data.user))
+           { setError('')
+            dispatch(logUser(data.user))
             router.push('/home')
-           }
+           } else {setError(data.error)}
             } )
     }
 
@@ -44,9 +47,18 @@ function SignIn (){
             </div>
             <h2 className={styles.title}>Connect to Hackatweet</h2>
             <div className={styles.postContainer}>
-                <input type="text" className={styles.input} placeholder='Username' onChange={e=>setUsername(e.target.value)} value={username} />
-                <input type="password" className={styles.input} placeholder='Password' onChange={e=>setPassword(e.target.value)} value={password} onKeyDown={passwordKeyDown}/>
+                <input type="text" className={styles.input} placeholder='Username' onChange={e=>{
+                    setUsername(e.target.value)
+                    setError('')
+                    }} value={username} />
+                <input type="password" className={styles.input} placeholder='Password' onChange={e=>{
+                    setPassword(e.target.value)
+                    setError('')
+                }} value={password} onKeyDown={passwordKeyDown}/>
                 <button className={styles.button} onClick={()=>buttonClick()}>Sign in</button>
+                <div className={styles.errorContainer}>
+                <p className={styles.error}>{error}</p>
+                </div>
             </div>
         </div>
         

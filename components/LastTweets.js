@@ -1,5 +1,6 @@
 import styles from '../styles/LastTweets.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
@@ -30,7 +31,6 @@ function LastTweets (props) {
         fetch(`http://localhost:3000/tweets/deleteTweet/${props._id}`, {method: 'DELETE'})
         .then(response=>response.json())
         .then(data=>{
-            console.log(data)
             data.deletedCount>0 && dispatch(deleteTweet(props._id))
         })
     }
@@ -73,7 +73,7 @@ function LastTweets (props) {
     }
  
     let newMessage = props.message.split(' ').map((e,i)=>{
-        if (e.startsWith('#') && e.length >1){return <span key={i} style={{color : 'rgb(63	140	233	)'}}>{e} </span>}
+        if (e.startsWith('#') && e.length >1){return <Link href={`/hashtag/${e.slice(1)}`}><span key={i} style={{color : 'rgb(63	140	233	)',textDecoration: 'none'}}>{e} </span></Link>}
         else {return e + ' '}
     })
 

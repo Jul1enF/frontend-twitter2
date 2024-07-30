@@ -10,7 +10,8 @@ function Tweet (props) {
     const [tweetTypped, setTweetTyped]=useState('')
 
     const regex = /#\w*/g
-    const hashtags = tweetTypped.match(regex)
+    let hashtags
+    if (tweetTypped.match(regex)) {hashtags=tweetTypped.match(regex)}
 
     const buttonClick = ()=>{
         fetch('http://localhost:3000/tweets/newTweet',  {
