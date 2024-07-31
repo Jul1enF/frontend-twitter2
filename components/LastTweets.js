@@ -9,6 +9,7 @@ import { deleteTweet, addLiker, removeLiker } from '../reducers/tweets'
 const moment = require('moment')
 
 function LastTweets (props) {
+    const url = process.env.NEXT_PUBLIC_BACK_ADRESS
 
     const dispatch = useDispatch()
     const timePassed = moment(props.createdDate).fromNow(true)
@@ -28,7 +29,7 @@ function LastTweets (props) {
     isLiked ? heartStyle = {color : 'red'} : heartStyle = {color : 'white'}
 
     const trashClick = ()=>{
-        fetch(`http://localhost:3000/tweets/deleteTweet/${props._id}`, {method: 'DELETE'})
+        fetch(`${url}/tweets/deleteTweet/${props._id}`, {method: 'DELETE'})
         .then(response=>response.json())
         .then(data=>{
             data.deletedCount>0 && dispatch(deleteTweet(props._id))
@@ -43,7 +44,7 @@ function LastTweets (props) {
 
     const heartClick = ()=>{
         if (!isLiked){
-            fetch('http://localhost:3000/tweets/addLiker', {
+            fetch(`${url}/tweets/addLiker`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({id : props._id, userId : user._id})
@@ -57,7 +58,7 @@ function LastTweets (props) {
                 })
         }
         else {
-            fetch('http://localhost:3000/tweets/removeLiker', {
+            fetch(`${url}/tweets/removeLiker`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({id : props._id, userId : user._id})

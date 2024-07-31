@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 function Trends (props){
+    const url = process.env.NEXT_PUBLIC_BACK_ADRESS
 
     const router = useRouter()
 
@@ -12,7 +13,7 @@ function Trends (props){
     const tweets = useSelector((state)=>state.tweets.value)
 
     useEffect(()=>{
-        fetch('http://localhost:3000/tweets')
+        fetch(`${url}/tweets`)
         .then(response=>response.json())
         .then(data => {
             setAllTweets(data)

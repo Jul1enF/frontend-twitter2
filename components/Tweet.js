@@ -5,6 +5,7 @@ import { addTweet } from '../reducers/tweets'
 
 
 function Tweet (props) {
+    const url = process.env.NEXT_PUBLIC_BACK_ADRESS
 
     const dispatch = useDispatch()
     const [tweetTypped, setTweetTyped]=useState('')
@@ -14,7 +15,7 @@ function Tweet (props) {
     if (tweetTypped.match(regex)) {hashtags=tweetTypped.match(regex)}
 
     const buttonClick = ()=>{
-        fetch('http://localhost:3000/tweets/newTweet',  {
+        fetch(`${url}/tweets/newTweet`,  {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

@@ -10,6 +10,7 @@ import Trends from './Trends'
 import { useEffect } from 'react';
 
 function Home() {
+  const url = process.env.NEXT_PUBLIC_BACK_ADRESS
 
   const dispatch = useDispatch()
   const user = useSelector((state)=>state.user.value)
@@ -27,7 +28,7 @@ function Home() {
     if (!user.token) {
       return;
     }
-    fetch('http://localhost:3000/tweets')
+    fetch(`${url}/tweets`)
     .then(response=>response.json())
     .then(data => dispatch(addTweets(data)))
   },[])

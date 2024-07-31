@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link'
 
 function Hashtag (props){
+  const url = process.env.NEXT_PUBLIC_BACK_ADRESS
+
     const router = useRouter()
     let hashtag = router.query.hashtag
     const [hashtagInput, setHashtagInput]= useState('#' + hashtag)
@@ -22,7 +24,7 @@ function Hashtag (props){
     if (!user.token){router.push('/')}
 
     const getHashtagTweets = async ()=>{
-      const response = await fetch(`http://localhost:3000/tweets/getByHashtag/${hashtag}`)
+      const response = await fetch(`${url}/tweets/getByHashtag/${hashtag}`)
       const data = await response.json()
       dispatch(addTweets(data))
     }

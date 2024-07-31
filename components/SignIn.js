@@ -1,3 +1,4 @@
+
 import styles from '../styles/SignIn.module.css'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -6,6 +7,8 @@ import { logUser } from '../reducers/user'
 import {useRouter} from 'next/router'
 
 function SignIn (){
+    const url = process.env.NEXT_PUBLIC_BACK_ADRESS
+    console.log(url)
     
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -16,7 +19,7 @@ function SignIn (){
     const router = useRouter()
 
     const buttonClick = ()=>{
-        fetch('http://localhost:3000/users/signin', {
+        fetch(`${url}/users/signin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 
 
 function SignUp (){
+    const url = process.env.NEXT_PUBLIC_BACK_ADRESS
 
     const [firstname, setFirstname] = useState('')
     const [username, setUsername] = useState('')
@@ -18,7 +19,7 @@ function SignUp (){
     const [error, setError] = useState('')
 
     const buttonClick = ()=>{
-        fetch('http://localhost:3000/users/signup', {
+        fetch(`${url}/users/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
