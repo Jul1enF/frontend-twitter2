@@ -74,7 +74,7 @@ function LastTweets (props) {
     }
  
     let newMessage = props.message.split(' ').map((e,i)=>{
-        if (e.startsWith('#') && e.length >1){return <Link href={`/hashtag/${e.slice(1)}`}><span key={i} style={{color : 'rgb(63	140	233	)',textDecoration: 'none'}}>{e} </span></Link>}
+        if (e.startsWith('#') && e.length >1){return <Link href={`/hashtag/${e.slice(1)}`}><span key={i} style={{color : 'rgb(63	140	233	)',textDecoration: 'none', cursor : 'pointer'}}>{e} </span></Link>}
         else {return e + ' '}
     })
 
