@@ -134,7 +134,7 @@
         transition-duration: 0.4s;
     }
     .title{
-        font-size: 53px;
+        font-size: 45px;
         transition-duration: 0.4s;
     }
     .postContainer{
@@ -142,7 +142,7 @@
         justify-content: space-evenly;
     }
     .secondTitle{
-        font-size: 31px;
+        font-size: 25px;
         transition-duration: 0.4s;
     }
     .signupButton{
@@ -152,7 +152,7 @@
         transition-duration: 0.4s;
     }
     .question{
-        font-size: 20px;
+        font-size: 15px;
         transition-duration: 0.4s;
     }
     .signinButton{
