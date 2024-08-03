@@ -18,14 +18,11 @@ function Login (){
         setSigninModal(false)
     }
 
-    let modalStyle = {content: { backgroundColor:  'rgb(23	32	42	)'}}
-
     return (
         <div className={styles.body}>
-
-            <Modal open={signupModal} footer={null} onCancel={()=>closeSignupModal()} styles={modalStyle} closeIcon={<CloseOutlined style={{color: "white"}}/>}><SignUp /></Modal>
+            <Modal open={signupModal} footer={null} onCancel={()=>closeSignupModal()} classNames={{content : styles.modalContent}} closeIcon={<CloseOutlined style={{color: "white"}}/>}><SignUp /></Modal>
             
-            <Modal open={signinModal} footer={null} onCancel={()=>closeSigninModal()} styles={modalStyle} closeIcon={<CloseOutlined style={{color: "white"}}/>}><SignIn/></Modal>
+            <Modal open={signinModal} footer={null} onCancel={()=>closeSigninModal()} classNames={{content : styles.modalContent}} closeIcon={<CloseOutlined style={{color: "white"}}/>}><SignIn/></Modal>
 
             <div className={styles.leftContainer}>
                 <div className={styles.mainLogoContainer}>

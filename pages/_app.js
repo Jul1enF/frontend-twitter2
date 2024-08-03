@@ -3,6 +3,8 @@ import '../styles/globals.css';
 import Head from 'next/head';
 import {Provider} from 'react-redux'
 
+import { StyleProvider } from '@ant-design/cssinjs';
+
 import user from '../reducers/user'
 import tweets from '../reducers/tweets'
 
@@ -27,10 +29,12 @@ function App({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-        <Head>
-        <title>Twitter 2</title>
-      </Head>
-      <Component {...pageProps} />
+          <StyleProvider layer>
+            <Head>
+            <title>Twitter 2</title>
+            </Head>
+            <Component {...pageProps} />
+          </StyleProvider>
         </PersistGate>
       </Provider>
       

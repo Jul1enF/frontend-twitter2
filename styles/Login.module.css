@@ -1,6 +1,16 @@
 .body{
+    height: 100vh;
+    width: 100vw;
     display: flex;
+    justify-content: center;
     font-family: Mount-Heavy;
+}
+
+.modalContent {
+    background-color: rgb(23	32	42	);
+    height: 53vh;
+    width: 35vw;
+    left: 32.5vw;
 }
 
 .leftContainer{
@@ -30,8 +40,8 @@
 }
 
 .contentContainer{
-    width: 50%;
-    height: 75vh;
+    width: 60%;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -46,7 +56,7 @@
 .title{
     color : white;
     text-align: justify;
-    font-size: 4.2vw;
+    font-size: 70px;
 }
 
 .postContainer{
@@ -60,7 +70,7 @@
 .secondTitle{
     width: 100%;
     color:white;
-    font-size: 2.1vw;
+    font-size: 33px;
 
 }
 
@@ -79,7 +89,7 @@
 
 .question{
     color : white;
-    font-size: 1.3vw;
+    font-size: 21px;
 }
 
 .signinButton{
@@ -95,53 +105,60 @@
     font-size: 1vw;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 900px) {
+    .modalContent{
+        width: 81vw;
+        left: 10vw;
+        height: 57vh
+    }
+
     .leftContainer{
         width:25vw;
-        transition-duration: 0.2s;
+        transition-duration: 0.4s;
     }
 
     .rightContainer{
         width: 75vw;
-        transition-duration: 0.2s;
+        transition-duration: 0.4s;
         padding-left: 4%;
         padding-top: 5%;
     }
     .contentContainer{
         width: 100%;
         height: 90vh;
-        transition-duration: 0.2s;
+        transition-duration: 0.4s;
     }
     .secondLogoContainer{
         width: 10vw;
         height: 10vw;
-        transition-duration: 0.2s;
+        transition-duration: 0.4s;
     }
     .title{
-        font-size: 11vw;
-        transition-duration: 0.2s;
+        font-size: 59px;
+        transition-duration: 0.4s;
     }
     .postContainer{
         height: 48%;
         justify-content: space-evenly;
     }
     .secondTitle{
-        font-size: 6.5vw;
-        transition-duration: 0.2s;
+        font-size: 35px;
+        transition-duration: 0.4s;
     }
     .signupButton{
-        width: 50%;
+        width: 40%;
         height: 11%;
         font-size: 3vw;
-        transition-duration: 0.2s;
+        transition-duration: 0.4s;
     }
     .question{
         font-size: 4vw;
+        transition-duration: 0.4s;
     }
     .signinButton{
-        width: 50%;
+        width: 40%;
         height: 11%;
         font-size: 3vw;
-        transition-duration: 0.2s;
+        transition-duration: 0.4s;
     }
 }
