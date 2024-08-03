@@ -105,7 +105,7 @@
     font-size: 1vw;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 700px) {
     .modalContent{
         width: 81vw;
         left: 10vw;
@@ -134,7 +134,7 @@
         transition-duration: 0.4s;
     }
     .title{
-        font-size: 59px;
+        font-size: 53px;
         transition-duration: 0.4s;
     }
     .postContainer{
@@ -142,7 +142,7 @@
         justify-content: space-evenly;
     }
     .secondTitle{
-        font-size: 35px;
+        font-size: 31px;
         transition-duration: 0.4s;
     }
     .signupButton{
@@ -152,7 +152,7 @@
         transition-duration: 0.4s;
     }
     .question{
-        font-size: 4vw;
+        font-size: 20px;
         transition-duration: 0.4s;
     }
     .signinButton{
