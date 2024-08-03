@@ -148,7 +148,7 @@
     width: 6vh;
   }
   .userInfosContainer{
-    width: 15vw;
+    width: 12vw;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -179,6 +179,6 @@
 
   .rightContainer{
     width: 35vw;
-    height: 90vh;
+    height: 88vh;
   }
 }
