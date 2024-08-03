@@ -1,8 +1,19 @@
 .body{
     display: flex;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    flex-direction: column;
   }
   
+  .phoneHeader{
+    display:none;
+  }
+  
+  .computerScreenContainer{
+    width:100vw;
+    height: 100vh;
+    display: flex;
+  }
+
   .leftContainer{
     height: 100vh;
     width: 20vw;
@@ -114,6 +125,7 @@
     background-color: rgb(30	39	49	);
     color:white;
     font-size: 108%;
+    outline: none;
   }
 
   .hashtagInput::placeholder{
@@ -131,4 +143,72 @@
     height: 100vh;
     width: 30vw;
     background-color: rgb(23	32	42	);
+  }
+
+  @media only screen and (max-width: 700px){
+    .phoneHeader{
+      display:flex;
+      width: 100vw;
+      height: 12vh;
+      justify-content:space-between;
+      align-items: center;
+      background-color: rgb(23	32	42	);
+      border-bottom: 1px solid rgb(63	70	80	);
+      padding-right: 4vw;
+      padding-left: 4vw;
+    }
+    .bottomContainer{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 60vw;
+      height: 12vh;
+    }
+    .userLogContainer{
+      width: 30vw;
+      height: 12vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .userLogoContainer{
+      height: 6vh;
+      width: 6vh;
+    }
+    .userInfosContainer{
+      width: 12vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    .logout{
+      width:18vw;
+      height: 27px;
+      border-radius: 5vw;
+    }
+    .computerScreenContainer{
+      height: 88vh;
+    }
+    .leftContainer{
+      display:none;
+      width: 88vh;
+    }
+    .centralContainer{
+      width: 65vw;
+      height: 88vh;
+      border-left: transparent;
+    }
+    .tweetContainer{
+      height: 18vh;
+    }
+    .lastTweetsContainer{
+      height: 70vh;
+    }
+  
+    .rightContainer{
+      width: 35vw;
+      height: 88vh;
+    }
   }
