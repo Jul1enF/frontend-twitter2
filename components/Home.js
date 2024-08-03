@@ -40,11 +40,27 @@ function Home() {
 
   return (
     <div className={styles.body}>
-        <div className={styles.leftContainer}>
+      <div className={styles.phoneHeader}>
           <div className={styles.twitterLogoContainer}>
-         
             <Image src='/logo.png' alt='Logo Twitter' layout='fill'/>
-        
+          </div>
+          <div className={styles.bottomContainer}>
+            <div className={styles.userLogContainer}>
+              <div className={styles.userLogoContainer}>
+                <Image src='/egg.jpg' alt='Logo User' layout='fill' className={styles.userLogo}/>
+              </div>
+              <div className={styles.userInfosContainer}>
+                <h6 className={styles.firstname}>{user.firstname}</h6>
+                <p className={styles.username}>@{user.username}</p>
+              </div>
+            </div>
+            <button type='button' className={styles.logout} onClick={()=>logoutClick()}>Logout</button>
+          </div>
+      </div>
+      <div className={styles.computerScreenContainer} >
+      <div className={styles.leftContainer}>
+          <div className={styles.twitterLogoContainer}>
+            <Image src='/logo.png' alt='Logo Twitter' layout='fill'/>
           </div>
           <div className={styles.bottomContainer}>
             <div className={styles.userLogContainer}>
@@ -70,6 +86,8 @@ function Home() {
         <div className={styles.rightContainer}>
           <Trends/>
         </div>
+      </div>
+        
     </div>
   );
 }

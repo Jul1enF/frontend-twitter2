@@ -147,7 +147,7 @@
     }
     .signupButton{
         width: 40%;
-        height: 11%;
+        height: 30px;
         font-size: 3vw;
         transition-duration: 0.4s;
     }
@@ -157,7 +157,7 @@
     }
     .signinButton{
         width: 40%;
-        height: 11%;
+        height: 30px;
         font-size: 3vw;
         transition-duration: 0.4s;
     }
