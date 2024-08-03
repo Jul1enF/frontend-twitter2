@@ -111,6 +111,8 @@
   height: 100vh;
   width: 30vw;
   background-color: rgb(23	32	42	);
+  overflow-x: scroll;
+  scrollbar-width: none;
 }
 
 @media only screen and (max-width: 700px){
@@ -147,18 +149,34 @@
   }
   .userInfosContainer{
     width: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
   .logout{
     width:15vw;
-    height: 22px;
+    height: 27px;
+    border-radius: 5vw;
+  }
+  .computerScreenContainer{
+    height: 90vh;
   }
   .leftContainer{
     display:none;
+    width: 90vh;
   }
   .centralContainer{
     width: 60vw;
     height: 90vh;
+    border-left: transparent;
   }
+  .tweetContainer{
+    height: 25vh;
+  }
+  .lastTweetsContainer{
+    height: 75vh;
+  }
+
   .rightContainer{
     width: 40vw;
     height: 90vh;

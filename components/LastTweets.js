@@ -84,8 +84,10 @@ function LastTweets (props) {
                 <div className={styles.userLogoContainer}>
                     <Image src='/egg.jpg' alt='Logo User' layout='fill' className={styles.userLogo}/>
                 </div>
+                <div className={styles.namesContainer}>
                 <p className={styles.firstname}>{props.firstname}</p>
                 <p className={styles.username}>@{props.username}</p>
+                </div>
                 <p className={styles.date}>{timePassed}</p>
             </div>
             <p className={styles.message}>{newMessage}</p>

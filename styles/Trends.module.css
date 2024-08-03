@@ -48,3 +48,13 @@
     color: rgb(121	131	139	);
     font-size: 85%;
 }
+
+@media only screen and (max-width: 700px){
+    .body{
+        padding: 1vh;
+    }
+    .hashtagContainer{
+        overflow-x: scroll;
+        scrollbar-width: none;
+    }
+}

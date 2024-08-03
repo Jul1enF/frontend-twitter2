@@ -28,10 +28,14 @@
 .userLogo{
     border-radius: 50%;
 }
-
+.namesContainer{
+    display: flex;
+    align-items: center;
+    margin-right: 3%;
+}
 .firstname{
     color:white;
-    margin-right: 2%;
+    margin-right: 10%;
     font-size: 100%;
 }
 
@@ -74,4 +78,29 @@
     color :white;
     height : 1.5vh;
     cursor: pointer;
+}
+@media only screen and (max-width: 700px){
+    .body{
+        padding: 1vh;
+        padding-left: 1.5vh;
+    }
+    .userInfosContainer{
+        align-items: flex-end;
+    }
+    .userLogoContainer{
+        height: 6vh;
+        width: 6vh;
+        margin-right: 5%;
+    }
+    .namesContainer{
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        margin-right: 7%;
+    }
+    .message{
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+  
 }
