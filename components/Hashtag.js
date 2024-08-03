@@ -56,7 +56,8 @@ function Hashtag (props){
         <div className={styles.body}>
            <div className={styles.phoneHeader}>
           <div className={styles.twitterLogoContainer}>
-            <Image src='/logo.png' alt='Logo Twitter' layout='fill'/>
+          <Link href='/home'>
+          <Image src='/logo.png' alt='Logo Twitter' layout='fill'/></Link>
           </div>
           <div className={styles.bottomContainer}>
             <div className={styles.userLogContainer}>
