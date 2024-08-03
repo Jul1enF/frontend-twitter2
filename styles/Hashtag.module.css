@@ -127,10 +127,6 @@
     font-size: 108%;
     outline: none;
   }
-
-  .hashtagInput::placeholder{
-    color:white;
-  }
   
   .lastTweetsContainer{
     width: 100%;
@@ -202,6 +198,14 @@
     }
     .tweetContainer{
       height: 18vh;
+      padding: 1vh;
+      padding-bottom: 4vh;
+      padding-left: 2vh;
+      padding-right: 2vh;
+    }
+    .hashtagInput{
+      width: 100%;
+      height: 5vh;
     }
     .lastTweetsContainer{
       height: 70vh;

@@ -172,6 +172,8 @@
   }
   .tweetContainer{
     height: 25vh;
+    display: flex;
+    flex-direction: column;
   }
   .lastTweetsContainer{
     height: 63vh;

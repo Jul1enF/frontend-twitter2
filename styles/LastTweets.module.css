@@ -95,6 +95,7 @@
     .namesContainer{
         flex-direction: column;
         justify-content: space-between;
+        align-items: flex-start;
         height: 100%;
         margin-right: 7%;
     }
