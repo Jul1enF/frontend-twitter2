@@ -119,7 +119,7 @@
   .phoneHeader{
     display:flex;
     width: 100vw;
-    height: 10vh;
+    height: 12vh;
     justify-content:space-between;
     align-items: center;
     background-color: rgb(23	32	42	);
@@ -133,11 +133,11 @@
     align-items: center;
     justify-content: space-between;
     width: 60vw;
-    height: 10vh;
+    height: 12vh;
   }
   .userLogContainer{
     width: 30vw;
-    height: 10vh;
+    height: 12vh;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -159,26 +159,26 @@
     border-radius: 5vw;
   }
   .computerScreenContainer{
-    height: 90vh;
+    height: 88vh;
   }
   .leftContainer{
     display:none;
-    width: 90vh;
+    width: 88vh;
   }
   .centralContainer{
-    width: 60vw;
-    height: 90vh;
+    width: 65vw;
+    height: 88vh;
     border-left: transparent;
   }
   .tweetContainer{
     height: 25vh;
   }
   .lastTweetsContainer{
-    height: 75vh;
+    height: 63vh;
   }
 
   .rightContainer{
-    width: 40vw;
+    width: 35vw;
     height: 90vh;
   }
 }
